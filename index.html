@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#5c1423" />
+  <title>Happy Birthday Best Friend</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app-shell" class="app-shell">
+    <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+    <div id="wish-layer" class="wish-layer" aria-hidden="true"></div>
+
+    <main id="app" class="relative min-h-screen overflow-hidden">
+      <section class="app-state state-1 is-active" data-state="1" aria-label="Passcode and polaroid page">
+        <div class="state-bg state-bg-maroon"></div>
+        <div class="state-inner state-1-layout">
+          <article class="polaroid-card">
+            <div class="polaroid-ribbon"></div>
+            <div class="polaroid-photo">
+              <img src="assets/polaroid-photo.jpg" alt="Birthday memory photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="polaroid-fallback">
+                <span>Bestie Bloom</span>
+                <span>Forever mood</span>
+              </div>
+            </div>
+            <div class="polaroid-caption">Happy Birthday! Best Friend</div>
+          </article>
+
+          <section class="lock-card" aria-label="Passcode keypad">
+            <div class="lock-copy">
+              <p class="eyebrow">Enter your birthday code</p>
+              <h1>Unlock the surprise</h1>
+            </div>
+
+            <div class="pin-row" aria-live="polite" aria-atomic="true">
+              <span class="pin-dot"></span>
+              <span class="pin-dot"></span>
+              <span class="pin-dot"></span>
+              <span class="pin-dot"></span>
+              <span class="pin-dot"></span>
+              <span class="pin-dot"></span>
+            </div>
+
+            <div class="keypad" role="group" aria-label="Birthday passcode keypad">
+              <button class="keypad-key" data-key="1" type="button">1</button>
+              <button class="keypad-key" data-key="2" type="button">2</button>
+              <button class="keypad-key" data-key="3" type="button">3</button>
+              <button class="keypad-key" data-key="4" type="button">4</button>
+              <button class="keypad-key" data-key="5" type="button">5</button>
+              <button class="keypad-key" data-key="6" type="button">6</button>
+              <button class="keypad-key" data-key="7" type="button">7</button>
+              <button class="keypad-key" data-key="8" type="button">8</button>
+              <button class="keypad-key" data-key="9" type="button">9</button>
+              <button class="keypad-key keypad-action" data-key="clear" type="button">⌫</button>
+              <button class="keypad-key keypad-zero" data-key="0" type="button">0</button>
+              <button class="keypad-key keypad-action" data-key="delete" type="button">C</button>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="app-state state-2" data-state="2" aria-label="Loading page">
+        <div class="state-bg state-bg-cream"></div>
+        <div class="state-inner loading-screen">
+          <div class="sparkle sparkle-1"></div>
+          <div class="sparkle sparkle-2"></div>
+          <div class="sparkle sparkle-3"></div>
+
+          <p class="loading-script">Hey gurl! 🎀</p>
+          <div class="cake-icon" aria-hidden="true">
+            <div class="cake-layer cake-top"></div>
+            <div class="cake-layer cake-base"></div>
+            <div class="cake-candle"></div>
+          </div>
+          <p class="loading-copy">Loading your birthday surprise...</p>
+          <div class="loading-bar" aria-hidden="true">
+            <div class="loading-bar-fill"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="app-state state-3" data-state="3" aria-label="Envelope page">
+        <div class="state-bg state-bg-maroon"></div>
+        <div class="state-inner envelope-screen">
+          <h2 class="section-title">Happy Birthday Gnnuu !!!</h2>
+          <button id="seal-button" class="seal-button" type="button" aria-label="Open envelope">
+            <div class="envelope-stage" id="envelope-stage">
+              <div class="envelope-shadow"></div>
+              <div class="letter-card letter-previews">
+                <div class="letter-line short"></div>
+                <div class="letter-line"></div>
+                <div class="letter-line"></div>
+              </div>
+              <div class="envelope-body"></div>
+              <div class="envelope-flap"></div>
+              <div class="wax-seal">
+                <span>open</span>
+              </div>
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <section class="app-state state-4" data-state="4" aria-label="Letter and cameos page">
+        <div class="state-bg state-bg-parchment"></div>
+        <div class="state-inner letter-screen">
+          <article class="letter-panel">
+            <p class="letter-small-title">An old-fashioned note for you</p>
+            <h2>To my favorite human</h2>
+            <p>
+              Happiest Birthday dear Gunnuuu❤️❤️🫂✨you r bestest person I have ever met in my life It is a great year of friendship with u. You become very close to me n my heart you are the only person to whom I can share everything even without thinking. I hope you will achieve all the goals you have wished to. It's your day enjoy it, party hard. Full on msti krte rho aap humesha haste khelte rho badmashi nhi rukni chahiye bilkul bhi 😂 you have a special space in my heart✨Thankkkk youu for always being there for me. you r the only person I can trust blindly. Idc what happens to me what going on in my life i just wanted to see you happy, achieving your goals. IDK who will be there for u or who will not in your bad time but i promise to u that i will be there for u anytime. but i hope n wish no more bad time bad things you get to face in future🤞Bss m itna kahunga apna dhyan rkha kro proper diet liya kro aur road prr msti kro lekin  apni safety ko priority m rkhte huye bcz i feel bad n sometimes angry too when anything bad happens to you. Bss humesha apni mnn mrji krte rho aur apna sapno ko sakar kro aur kbhi bhi humse koi glti hui ho ya hojaye toh iss gulam ko maaf krna maharani sahiba.Mera mnn tha aapke liye kuch gift bheju ya kru but aapne galiyan hi dedi 😭prr jbb milenge tbb aapko pkka lena pdega
+Once again Happiest Birthday to the very special person ❤️❤️ enjoy ur day n be happy always bchuuu❤️
+            </p>
+            <div class="doodle-row">
+              <span>♥</span><span>✦</span><span>♥</span><span>✦</span><span>♥</span>
+            </div>
+          </article>
+
+          <aside class="cameo-stack" aria-label="Photo cameos">
+            <button class="cameo-card" type="button" data-flip-card>
+              <span class="cameo-face cameo-front">
+                <img src="assets/cameo-1.jpg" alt="Memory cameo one" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+                <span class="cameo-fallback">Golden hour energy</span>
+              </span>
+              <span class="cameo-face cameo-back">You make the best memories shine brighter.</span>
+            </button>
+            <button class="cameo-card cameo-card-mid" type="button" data-flip-card>
+              <span class="cameo-face cameo-front">
+                <img src="assets/cameo-2.jpg" alt="Memory cameo two" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+                <span class="cameo-fallback">Little chaos queen</span>
+              </span>
+              <span class="cameo-face cameo-back">Your laugh is the loudest kind of comfort.</span>
+            </button>
+            <button class="cameo-card cameo-card-last" type="button" data-flip-card>
+              <span class="cameo-face cameo-front">
+                <img src="assets/cameo-3.jpg" alt="Memory cameo three" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+                <span class="cameo-fallback">Main character glow</span>
+              </span>
+              <span class="cameo-face cameo-back">Big dreams look good on you.</span>
+            </button>
+          </aside>
+
+          <button id="surprise-link" class="surprise-link" type="button">👉 tap here for a surprise 👈</button>
+        </div>
+      </section>
+
+      <section class="app-state state-5" data-state="5" aria-label="Cake countdown page">
+        <div class="state-bg state-bg-night"></div>
+        <div class="state-inner cake-screen">
+          <p class="wish-copy">Make a Wish ✨</p><br>
+          <div class="countdown-stage">
+            <div id="countdown-number" class="countdown-number" aria-live="polite">3</div><br><br><br>
+            <div id="cake-button" class="cake-wrap" role="button" tabindex="0" aria-label="Tap to blow candles">
+              <div class="cake-glow"></div>
+              <div class="cake-body">
+                <div class="cake-face">☺</div>
+                <div class="cake-frosting"></div>
+                <div class="cake-drip cake-drip-left"></div>
+                <div class="cake-drip cake-drip-right"></div>
+                <div class="candle candle-one">
+                  <span class="flame"></span>
+                  <span class="smoke"></span>
+                </div>
+                <div class="candle candle-two">
+                  <span class="flame"></span>
+                  <span class="smoke"></span>
+                </div>
+                <div class="candle candle-three">
+                  <span class="flame"></span>
+                  <span class="smoke"></span>
+                </div>
+                <div class="cake-base"></div>
+              </div>
+            </div>
+          </div>
+          <p id="blow-prompt" class="blow-prompt">Tap to Blow Candles!</p>
+          <button id="special-button" class="special-button" type="button">Specially For You 🎁</button>
+        </div>
+      </section>
+
+      <section class="app-state state-6" data-state="6" aria-label="Video climax page">
+        <div class="state-bg state-bg-maroon"></div>
+        <div class="state-inner climax-screen">
+          <div class="climax-copy">
+            <p class="eyebrow eyebrow-dark">The final gift</p>
+            <h2>Your birthday montage</h2>
+          </div>
+
+          <div class="video-frame">
+            <video id="birthday-video" class="birthday-video" controls playsinline preload="metadata" poster="assets/video-poster.jpg">
+              <source src="assets/birthday-montage.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <audio id="birthday-audio" loop preload="auto">
+      <source src="assets/birthday-song.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script src="script.js"></script>
+  </div>
+</body>
+</html>
