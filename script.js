@@ -13,6 +13,8 @@
   const wishLayer = document.getElementById('wish-layer');
   const birthdayAudio = document.getElementById('birthday-audio');
   const birthdayVideo = document.getElementById('birthday-video');
+  const letterPanel = document.querySelector('.letter-panel');
+  const letterBody = document.querySelector('.letter-body');
 
   const ctx = confettiCanvas.getContext('2d');
   let currentState = 1;
@@ -21,6 +23,7 @@
   let countdownTimer = null;
   let confettiFrame = null;
   let audioStarted = false;
+  let wishTimers = [];
 
   const wishes = [
     'Wishing you the best year ever! 💖',
@@ -30,6 +33,47 @@
   ];
 
   const particles = [];
+
+  function splitLetterText(text) {
+    const cleaned = text.replace(/\s+/g, ' ').trim();
+    return cleaned ? cleaned.split(' ') : [];
+  }
+
+  function prepareLetterReveal() {
+    if (!letterPanel || !letterBody || letterBody.dataset.revealed === 'true') return;
+
+    const fragment = document.createDocumentFragment();
+    const words = splitLetterText(letterBody.textContent || '');
+
+    letterBody.textContent = '';
+
+    words.forEach((word, index) => {
+      const wordSpan = document.createElement('span');
+      wordSpan.className = 'letter-line';
+      wordSpan.style.animationDelay = `${index * 70}ms`;
+      wordSpan.textContent = word;
+      fragment.appendChild(wordSpan);
+      fragment.appendChild(document.createTextNode(' '));
+    });
+
+    letterBody.appendChild(fragment);
+    letterBody.dataset.revealed = 'true';
+  }
+
+  function revealLetterPanel() {
+    if (!letterPanel) return;
+
+    prepareLetterReveal();
+    letterPanel.classList.remove('is-revealed');
+    void letterPanel.offsetWidth;
+    letterPanel.classList.add('is-revealed');
+    letterPanel.scrollTop = 0;
+
+    const letterState = document.querySelector('.state-4 .state-inner');
+    if (letterState) {
+      letterState.scrollTop = 0;
+    }
+  }
 
   function resizeCanvas() {
     const ratio = Math.min(window.devicePixelRatio || 1, 2);
@@ -167,7 +211,7 @@
     sealButton.classList.add('is-open');
     clickTone(1260, 0.05, 'triangle', 0.02);
     window.clearTimeout(loadingTimer);
-    setTimeout(() => activateState(4), 900);
+    setTimeout(() => handleStateTransitions(4), 900);
   }
 
   function flipCard(card) {
@@ -291,17 +335,22 @@
 
   function spawnWishes() {
     wishLayer.innerHTML = '';
+    wishTimers.forEach((timerId) => clearTimeout(timerId));
+    wishTimers = [];
     const count = 4;
     for (let i = 0; i < count; i += 1) {
-      const bubble = document.createElement('div');
-      bubble.className = `wish-bubble ${i % 2 ? 'alt' : ''}`;
-      bubble.textContent = wishes[(Math.random() * wishes.length) | 0];
-      bubble.style.left = `${12 + Math.random() * 70}%`;
-      bubble.style.top = `${52 + Math.random() * 18}%`;
-      bubble.style.animationDelay = `${i * 0.18}s`;
-      bubble.style.transform = `translateY(${10 + Math.random() * 12}px) scale(${0.92 + Math.random() * 0.08})`;
-      wishLayer.appendChild(bubble);
-      window.setTimeout(() => bubble.remove(), 4200);
+      const timerId = window.setTimeout(() => {
+        const bubble = document.createElement('div');
+        bubble.className = `wish-bubble ${i % 2 ? 'alt' : ''}`;
+        bubble.textContent = wishes[(Math.random() * wishes.length) | 0];
+        bubble.style.left = `${12 + Math.random() * 70}%`;
+        bubble.style.top = `${52 + Math.random() * 18}%`;
+        bubble.style.animationDelay = '0s';
+        bubble.style.transform = `translateY(${10 + Math.random() * 12}px) scale(${0.92 + Math.random() * 0.08})`;
+        wishLayer.appendChild(bubble);
+        window.setTimeout(() => bubble.remove(), 4200);
+      }, (i + 1) * 2000);
+      wishTimers.push(timerId);
     }
   }
 
@@ -327,6 +376,7 @@
 
   function handleStateTransitions(nextState) {
     activateState(nextState);
+    if (nextState === 4) revealLetterPanel();
     if (nextState === 5) onStateFourEntry();
   }
 
@@ -370,5 +420,6 @@
   resizeCanvas();
   window.addEventListener('resize', resizeCanvas);
   syncPins();
+  prepareLetterReveal();
   activateState(1);
 })();

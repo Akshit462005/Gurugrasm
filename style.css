@@ -595,6 +595,10 @@ button, input, textarea, select {
   overflow: hidden;
 }
 
+.letter-panel.is-revealed .letter-line {
+  animation: line-fade-in 0.7s ease forwards;
+}
+
 .letter-panel::before {
   content: '';
   position: absolute;
@@ -611,6 +615,19 @@ button, input, textarea, select {
 
 .letter-panel p + p {
   margin-top: 0.8rem;
+}
+
+.letter-body {
+  display: block;
+  white-space: normal;
+  line-height: 1.7;
+}
+
+.letter-line {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  will-change: opacity, transform;
 }
 
 .letter-small-title {
@@ -1085,6 +1102,11 @@ button, input, textarea, select {
   100% { opacity: 0; transform: translateY(-160px) scale(1); }
 }
 
+@keyframes line-fade-in {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
 @media (min-width: 740px) {
   .state-1-layout {
     grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
@@ -1134,6 +1156,12 @@ button, input, textarea, select {
   .letter-panel {
     width: min(100%, 560px);
     max-width: 100%;
+  }
+
+  .state-4 .letter-panel {
+    max-height: min(76dvh, 620px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 }
 
@@ -1204,6 +1232,10 @@ button, input, textarea, select {
     max-width: none;
     border-width: 7px;
     aspect-ratio: 0.86;
+  }
+
+  .state-4 .letter-panel {
+    max-height: min(72dvh, 560px);
   }
 
   .countdown-stage {
